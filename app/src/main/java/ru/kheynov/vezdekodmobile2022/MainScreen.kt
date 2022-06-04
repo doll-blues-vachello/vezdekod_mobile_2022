@@ -14,7 +14,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ru.kheynov.feature_login.LoginMode
+import ru.kheynov.feature_login.LoginMode.CREATE
+import ru.kheynov.feature_login.LoginMode.VERIFY
 import ru.kheynov.feature_login.LoginScreen
 import ru.kheynov.vezdekodmobile2022.AppState.Login
 import ru.kheynov.vezdekodmobile2022.AppState.Stories
@@ -26,7 +27,7 @@ fun MainScreen(
     val context = LocalContext.current
     val state = viewModel.state.observeAsState()
     when (state.value) {
-        Login(LoginMode.CREATE) -> {
+        Login(CREATE) -> {
             Toast.makeText(context, "Создайте новый пароль", Toast.LENGTH_SHORT).show()
             LoginScreen(onResult = { pin ->
                 viewModel.savePin(pin)
@@ -34,7 +35,7 @@ fun MainScreen(
             })
             Toast.makeText(context, "Успешно", Toast.LENGTH_SHORT).show()
         }
-        Login(LoginMode.VERIFY) -> {
+        Login(VERIFY) -> {
             Toast.makeText(context, "Введите ваш пароль", Toast.LENGTH_SHORT).show()
             LoginScreen(onResult = { pin ->
                 val res = viewModel.verifyPassword(pin)
@@ -53,6 +54,7 @@ fun MainScreen(
                 }
             }
         }
+        else -> {}
     }
 
 }

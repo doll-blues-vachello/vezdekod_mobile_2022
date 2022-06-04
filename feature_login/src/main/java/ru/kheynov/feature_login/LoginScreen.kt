@@ -32,8 +32,7 @@ fun LoginScreen(
     val loginState by viewModel.state.observeAsState()
 
     if (loginState == LoginState.Done) {
-        val _pass = viewModel.password
-        if (!onResult(_pass)) viewModel.clear()
+        if (!onResult(viewModel.password)) viewModel.clear()
         Log.i(TAG, "Entering done")
     }
 
