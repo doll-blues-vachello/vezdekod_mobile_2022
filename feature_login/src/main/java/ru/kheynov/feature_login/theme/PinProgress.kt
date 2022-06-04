@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import ru.kheynov.feature_login.PinDot
+import ru.kheynov.feature_login.pin_progress.PinDot
 
 @Composable
 fun PinProgress(

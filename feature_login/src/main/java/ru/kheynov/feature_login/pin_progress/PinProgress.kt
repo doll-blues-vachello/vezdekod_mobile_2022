@@ -1,4 +1,4 @@
-package ru.kheynov.feature_login
+package ru.kheynov.feature_login.pin_progress
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
