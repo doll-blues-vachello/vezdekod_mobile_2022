@@ -13,12 +13,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import ru.kheynov.feature_login.pin_pad.PinPad
 import ru.kheynov.feature_login.pin_progress.PinProgress
 import ru.kheynov.feature_login.theme.LoginScreenTheme
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    viewModel: LoginScreenViewModel = viewModel(),
+) {
+    val state: Int = viewModel.passwordProgress
     LoginScreenTheme {
         Surface(modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background) {
@@ -44,7 +48,7 @@ fun LoginScreen() {
                 Spacer(modifier = Modifier.height(20.dp))
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center) {
-                    PinProgress(modifier = Modifier.width(127.dp), state = 3)
+                    PinProgress(modifier = Modifier.width(127.dp), state = state)
                 }
                 Spacer(modifier = Modifier.height(52.dp))
                 Row(modifier = Modifier.fillMaxWidth(),
@@ -52,6 +56,8 @@ fun LoginScreen() {
                     PinPad(
                         modifier = Modifier.padding(horizontal = 54.dp),
                         onClick = { idx ->
+                            viewModel.onPadClick(idx)
+                            Log.i("LoginScreen", "Password is now is: ${viewModel.password}")
                             Log.i("LoginScreen", "Button $idx pressed ")
                         })
                 }
