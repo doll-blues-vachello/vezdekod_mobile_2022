@@ -1,14 +1,26 @@
 package ru.kheynov.feature_login
 
+import android.app.Application
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
-class LoginScreenViewModel : ViewModel() {
+sealed interface LoginState {
+    object Done : LoginState
+    object InProgress : LoginState
+}
+
+class LoginScreenViewModel(application: Application) : AndroidViewModel(application) {
     private val _passwordProgress = mutableStateOf(0)
 
+    private val _state = MutableLiveData<LoginState>(LoginState.InProgress)
+    val state: LiveData<LoginState>
+        get() = _state
+
     private val _password = mutableListOf<Int>()
-    val password: List<Int>
-        get() = _password
+    val password: String
+        get() = passwordToString(_password)
 
     val passwordProgress: Int
         get() = _passwordProgress.value
@@ -33,11 +45,25 @@ class LoginScreenViewModel : ViewModel() {
             }
             return
         }
-        if (passwordProgress >= 4) {
-            _passwordProgress.value = 0
-            _password.clear()
-        }
         increaseProgress()
         _password.add(padIndex)
+        if (_password.size == 4) {
+            setState(LoginState.Done)
+        } else {
+            setState(LoginState.InProgress)
+        }
+
+    }
+
+    private fun setState(state: LoginState) {
+        if (_state != state) _state.value = state
+    }
+
+    private fun passwordToString(password: List<Int>): String {
+        val pin = StringBuilder()
+        password.forEach {
+            pin.append(it.toString())
+        }
+        return pin.toString()
     }
 }
