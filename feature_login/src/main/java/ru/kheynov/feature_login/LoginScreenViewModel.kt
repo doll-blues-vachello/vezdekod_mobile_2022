@@ -1,17 +1,16 @@
 package ru.kheynov.feature_login
 
-import android.app.Application
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
 sealed interface LoginState {
     object Done : LoginState
     object InProgress : LoginState
 }
 
-class LoginScreenViewModel(application: Application) : AndroidViewModel(application) {
+class LoginScreenViewModel : ViewModel() {
     private val _passwordProgress = mutableStateOf(0)
 
     private val _state = MutableLiveData<LoginState>(LoginState.InProgress)
@@ -31,6 +30,11 @@ class LoginScreenViewModel(application: Application) : AndroidViewModel(applicat
 
     private fun decreaseProgress() {
         _passwordProgress.value = _passwordProgress.value.dec()
+    }
+
+    fun clear(){
+        _passwordProgress.value = 0
+        _password.clear()
     }
 
     fun onPadClick(padIndex: Int) {
