@@ -104,7 +104,7 @@ fun StoriesScreen(
                             Spacer(modifier = Modifier.height(7.dp))
                         }
 
-                        Box(/*TODO: swipe gestures*/) {
+                        Box {
 
                             GlideImage(
                                 modifier = Modifier
