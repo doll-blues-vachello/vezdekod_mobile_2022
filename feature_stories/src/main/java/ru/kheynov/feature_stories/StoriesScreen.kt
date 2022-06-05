@@ -1,5 +1,7 @@
 package ru.kheynov.feature_stories
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,9 +24,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -40,7 +44,9 @@ fun StoriesScreen(
     viewModel: StoriesScreenViewModel = viewModel(),
 ) {
     val storiesProgress by viewModel.storiesProgress.observeAsState()
+    val context = LocalContext.current
     StoriesScreenTheme {
+
         Surface(modifier = Modifier.fillMaxSize(), color =
         MaterialTheme.colors
             .background) {
@@ -167,14 +173,21 @@ fun StoriesScreen(
                                     }
                                 )
                             }
+
                             Box(modifier = Modifier
                                 .fillMaxSize()
                                 .padding(bottom = 24.dp),
                                 contentAlignment = Alignment.BottomCenter) {
+
                                 Image(imageVector = ImageVector.vectorResource(
                                     id = R.drawable.ic_button_details),
                                     contentDescription = "",
-                                    modifier = Modifier.clickable { }
+                                    modifier = Modifier.clickable {
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(viewModel
+                                            .items[storiesProgress ?: 0].link))
+                                        startActivity(context,
+                                            intent, null)
+                                    }
                                 )
                             }
                         }
