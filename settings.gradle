@@ -16,3 +16,4 @@ rootProject.name = "VezdekodMobile2022"
 include ':app'
 include ':feature_login'
 include ':feature_stories'
+include ':card_swipe'
