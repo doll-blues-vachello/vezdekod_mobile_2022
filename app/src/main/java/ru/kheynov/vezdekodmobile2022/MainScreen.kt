@@ -1,5 +1,6 @@
 package ru.kheynov.vezdekodmobile2022
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -11,6 +12,8 @@ import ru.kheynov.feature_login.LoginScreen
 import ru.kheynov.feature_stories.StoriesScreen
 import ru.kheynov.vezdekodmobile2022.AppState.Login
 import ru.kheynov.vezdekodmobile2022.AppState.Stories
+
+private const val TAG = "MainScreen"
 
 @Composable
 fun MainScreen(
@@ -38,6 +41,8 @@ fun MainScreen(
         Stories -> {
             StoriesScreen()
         }
+        else -> {
+            Log.i(TAG, "Something went wrong")}
     }
 
 }
