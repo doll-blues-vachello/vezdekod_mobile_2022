@@ -53,7 +53,7 @@ fun StoriesScreen(
             GlideImage(
                 modifier = Modifier
                     .clip(shape = RoundedCornerShape(10.dp))
-                    .blur(200.dp),
+                    .blur(15.dp),
                 imageModel = (viewModel.items[storiesProgress ?: 0])
                     .image,
                 shimmerParams = ShimmerParams(
