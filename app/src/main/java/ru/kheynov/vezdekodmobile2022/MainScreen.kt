@@ -35,7 +35,6 @@ fun MainScreen(
                     .show()
                 return@LoginScreen res
             })
-            Toast.makeText(context, "Успешно", Toast.LENGTH_SHORT).show()
         }
         Stories -> {
             StoriesScreen()
