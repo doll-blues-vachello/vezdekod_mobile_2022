@@ -25,7 +25,6 @@ fun MainScreen(
                 viewModel.savePin(pin)
                 return@LoginScreen true
             })
-            Toast.makeText(context, "Успешно", Toast.LENGTH_SHORT).show()
         }
         Login(VERIFY) -> {
             Toast.makeText(context, "Введите ваш пароль", Toast.LENGTH_SHORT).show()
