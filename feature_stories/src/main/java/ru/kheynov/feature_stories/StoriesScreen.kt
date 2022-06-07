@@ -57,15 +57,15 @@ fun StoriesScreen(
                 imageModel = (viewModel.items[storiesProgress ?: 0])
                     .image,
                 shimmerParams = ShimmerParams(
-                    baseColor = MaterialTheme.colors.surface,
-                    highlightColor = MaterialTheme.colors.background,
+                    baseColor = MaterialTheme.colors.background,
+                    highlightColor = MaterialTheme.colors.surface,
                     durationMillis = 500,
                     dropOff = 0.65f,
                     tilt = 20f,
                 ),
                 requestOptions = {
                     RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop()
                 },
                 contentScale = ContentScale.FillHeight,
@@ -112,15 +112,15 @@ fun StoriesScreen(
                                 imageModel = (viewModel.items[storiesProgress ?: 0])
                                     .image,
                                 shimmerParams = ShimmerParams(
-                                    baseColor = MaterialTheme.colors.surface,
-                                    highlightColor = MaterialTheme.colors.background,
+                                    baseColor = MaterialTheme.colors.background,
+                                    highlightColor = MaterialTheme.colors.surface,
                                     durationMillis = 500,
                                     dropOff = 0.65f,
                                     tilt = 20f,
                                 ),
                                 requestOptions = {
                                     RequestOptions()
-                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                                         .centerCrop()
                                 },
                                 contentScale = ContentScale.Fit,

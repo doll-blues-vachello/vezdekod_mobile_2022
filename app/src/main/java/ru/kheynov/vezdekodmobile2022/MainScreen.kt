@@ -42,7 +42,8 @@ fun MainScreen(
             StoriesScreen()
         }
         else -> {
-            Log.i(TAG, "Something went wrong")}
+            Log.i(TAG, "Something went wrong")
+        }
     }
 
 }
