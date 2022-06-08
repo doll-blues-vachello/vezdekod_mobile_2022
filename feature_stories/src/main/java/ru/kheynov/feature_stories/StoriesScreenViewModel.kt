@@ -65,5 +65,4 @@ class StoriesScreenViewModel : ViewModel() {
         if (_storiesProgress.value!! > 0) _storiesProgress.value = _storiesProgress.value?.dec()
         else _storiesProgress.value = items.size - 1
     }
-
 }

@@ -15,32 +15,32 @@ class MainScreenViewModel(application: Application) : AndroidViewModel(applicati
     val state: LiveData<AppState>
         get() = _state
 
-    private val _isVerified = MutableLiveData(false)
-    val isVerified: Boolean
-        get() = _isVerified.value ?: false
+    private val isVerified = MutableLiveData(false)
+
 
     private val pinCodeStorage = PinCodeStorage(application.applicationContext.applicationContext)
 
     init {
-        if (!isVerified)
+        if (!isVerified.value!!) {
             if (isPinExists()) {
                 _state.value = Login(VERIFY)
-                _isVerified.value = false
+                isVerified.value = false
             } else {
                 _state.value = Login(CREATE)
-                _isVerified.value = false
+                isVerified.value = false
             }
+        }
     }
 
     private fun isPinExists() = pinCodeStorage.isPinExists()
 
     fun verifyPassword(password: String): Boolean {
-        if (password == pinCodeStorage.getPin()){
+        return if (password == pinCodeStorage.getPin()) {
             _state.value = Stories
-            return true
-        }else{
+            true
+        } else {
             _state.value = Login(VERIFY)
-            return false
+            false
         }
     }
 

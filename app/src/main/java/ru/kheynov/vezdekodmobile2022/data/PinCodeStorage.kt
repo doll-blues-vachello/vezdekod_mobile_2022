@@ -20,12 +20,8 @@ class PinCodeStorage(context: Context) {
         editor.apply()
     }
 
-    fun getPin(): String {
-        val pin = sharedPref.getString(PIN_KEY, "") ?: ""
-        return pin
-    }
+    fun getPin() = sharedPref.getString(PIN_KEY, "") ?: ""
 
-    fun isPinExists(): Boolean {
-        return sharedPref.getBoolean(PIN_EXISTS_KEY, false)
-    }
+    fun isPinExists() = sharedPref.getBoolean(PIN_EXISTS_KEY, false)
+
 }

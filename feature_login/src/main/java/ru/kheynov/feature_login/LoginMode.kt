@@ -1,6 +1,6 @@
 package ru.kheynov.feature_login
 
-enum class LoginMode() {
+enum class LoginMode {
     CREATE,
     VERIFY
 }
